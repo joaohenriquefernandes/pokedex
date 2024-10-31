@@ -34,7 +34,7 @@ export function PokemonDetails({ pokemonId, open }: IPokemonDetailsProps) {
   });
 
   return (
-    <DialogContent className="w-[1200px] h-[800px] flex flex-col items-center justify-start">
+    <DialogContent className="w-[1000px] h-[800px] flex flex-col items-center justify-start pt-10 px-4">
       <DialogHeader className="flex flex-col gap-6 items-center justify-center">
         <DialogTitle className="text-2xl font-bold">
           {pokemon?.name ? FormatPokemonName(pokemon?.name) : 'Desconhecido'}

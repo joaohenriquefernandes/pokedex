@@ -42,10 +42,10 @@ export function Home() {
     <>
       <Header />
 
-      <div className="space-y-4 mt-3 p-2">
+      <div className="space-y-10 mt-6 p-2">
         <PokemonsFilters />
 
-        <div className="w-full mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {data &&
             data.response.map((pokemon) => {
               return (
