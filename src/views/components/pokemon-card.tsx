@@ -1,5 +1,6 @@
 import { FormatPokemonName } from '@/app/utils/format-pokemon-name';
 import { TranslatePokemonType } from '@/app/utils/translate-pokemon-type';
+import { EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { PokemonDetails } from '../pages/pokemons/pokemon-details';
 import { Badge } from './ui/badge';
@@ -26,12 +27,16 @@ export function PokemonCard({ id, imageUrl, name, types }: IPokemonCardProps) {
     <Dialog open={isdetailsOpen} onOpenChange={setIsdetailsOpen}>
       <DialogTrigger>
         <div className="bg-zinc-100 h-80 flex flex-col items-center justify-between border-2 border-zinc-800 rounded-lg p-2">
-          <CardContent className="h-48 w-full overflow-hidden p-0">
-            <img
-              src={imageUrl}
-              alt="image-pokemon"
-              className="h-full w-full object-contain"
-            />
+          <CardContent className="h-48 w-full overflow-hidden p-0 flex items-center justify-center">
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt="image-pokemon"
+                className="h-full w-full object-contain"
+              />
+            ) : (
+              <EyeOff className="w-10 h-10 flex items-center justify-center" />
+            )}
           </CardContent>
           <CardTitle className="text-zinc-950 mt-4">
             {FormatPokemonName(name)}

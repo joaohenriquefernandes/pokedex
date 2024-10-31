@@ -19,6 +19,7 @@ import {
   TableRow,
 } from '@/views/components/ui/table';
 import { useQuery } from '@tanstack/react-query';
+import { EyeOff } from 'lucide-react';
 
 export interface IPokemonDetailsProps {
   pokemonId: number;
@@ -33,18 +34,22 @@ export function PokemonDetails({ pokemonId, open }: IPokemonDetailsProps) {
   });
 
   return (
-    <DialogContent className="w-[600px] h-[600px] flex flex-col items-center justify-start">
+    <DialogContent className="w-[1200px] h-[800px] flex flex-col items-center justify-start">
       <DialogHeader className="flex flex-col gap-6 items-center justify-center">
         <DialogTitle className="text-2xl font-bold">
           {pokemon?.name ? FormatPokemonName(pokemon?.name) : 'Desconhecido'}
         </DialogTitle>
 
-        <DialogDescription className="h-48 w-full overflow-hidden p-0">
-          <img
-            src={pokemon?.sprites.other['official-artwork'].front_default}
-            alt="image-pokemon"
-            className="h-full w-full object-contain"
-          />
+        <DialogDescription className="h-48 w-full overflow-hidden p-0 flex items-center justify-center">
+          {pokemon?.sprites.other['official-artwork'].front_default ? (
+            <img
+              src={pokemon?.sprites.other['official-artwork'].front_default}
+              alt="image-pokemon"
+              className="h-full w-full object-contain"
+            />
+          ) : (
+            <EyeOff className="w-6 h-6 flex items-center justify-center" />
+          )}
         </DialogDescription>
 
         <DialogTitle className="w-20 text-2xl font-bold">
@@ -102,6 +107,27 @@ export function PokemonDetails({ pokemonId, open }: IPokemonDetailsProps) {
                 ? FormatWeightToKilograms(pokemon?.weight)
                 : 'Desconhecido'}
             </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="text-sm">HP</TableHead>
+            <TableHead className="text-sm">Ataque</TableHead>
+            <TableHead className="text-sm">Defesa</TableHead>
+            <TableHead className="text-sm">Ataque Especial</TableHead>
+            <TableHead className="text-sm">Defesa Especial</TableHead>
+            <TableHead className="text-sm">Velocidade</TableHead>
+          </TableRow>
+        </TableHeader>
+
+        <TableBody>
+          <TableRow>
+            {pokemon?.stats.map((item) => {
+              return <TableCell>{item.base_stat}</TableCell>;
+            })}
           </TableRow>
         </TableBody>
       </Table>
